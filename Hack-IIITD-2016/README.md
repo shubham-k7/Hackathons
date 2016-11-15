@@ -16,9 +16,7 @@ This idea could be extended to coporate environments and parental guidance at ho
 
 There is a Raspberry Pi which is mounted in the classroom. The Raspberry Pi sniffs user data and af filters it. The filtered output includes a bunch of .txt files contaning source IPs, destination IPs, Mac addresses of users,etc. These are then sent over to the web server via ssh which parses the files and uses High Charts to give a graphical analysis of websites being used. The web Application has an option to deauthenticate the user which is done using aireplay-ng.
 
-#Implementation
 
-The sniffing is done using tshark and the identification of mac addresses given ip addresses is done using arp-scan. DNS lookup and Whois were used to get information about the destination ip address. All the filters were made using shell scripts and the outputs were redirected to .txt files. These files are sent over ssh to the web server which parses these files and shows them in the web app.
 
 
 
