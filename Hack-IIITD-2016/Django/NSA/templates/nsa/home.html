@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'nsa/js/bootstrap/dist/css/bootstrap.min.css' %}" type='text/css'>
+<link rel="stylesheet" href="{% static 'nsa/css/home.css' %}" type='text/css'>
+<body>
+<title>Home</title>
+<div class='container text-center'>
+	<div class='row'>
+		<h1 id='title' class='text-center' style='font-family:"Monteserrat"; font-size: 10vw;'>NeSNis</h1>
+	</div>
+	<div id='flowchart' class='row'>
+	<br>
+	<br>
+	<br>
+    <img src="{% static 'nsa/images/Flowchart.png' %}" style = "width:700; height:300" class='img-rounded center-block'/>
+	</div>
+	<div class = 'row'>
+	<br>
+	<br>
+	<h3> Facebook, Twitter, Google/Youtube, Yahoo, Amazon, Quora </h3>
+	</div>
+    <div id='analyse_button'>
+    <br>
+    <br>
+    <br>
+    <center><button type="button" class="btnk" style="width:50%; height:10%" onclick = 'window.location.href = "http://127.0.0.1:8000/nsa/analyse" '>Analyse</button></center>
+    </div>  
+    <br>
+    <br>
+</div>
+</body>
+{% load staticfiles %}
+<script src="{% static 'nsa/js/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'nsa/js/bootstrap/dist/js/bootstrap.min.js' %}"></script>

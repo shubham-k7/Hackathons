@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'nsa/js/bootstrap/dist/css/bootstrap.min.css' %}" type='text/css'>
+<link rel="stylesheet" href="{% static 'nsa/css/home.css' %}" type='text/css'>
+<body style='height:100%'>
+<title>A1nalyse</title>
+<div class='container clear-top' style='padding-bottom:150px'>
+    <h1 class='text-center jumbotron text-center' style='font-family:"Monteserrat"; font-size: 5vw;'>Network Sniffer Analysis</h1>
+	<div id="chart_container" style="width: 550px; height: 400px; margin: 0 auto" class='row center-block'>
+	</div>
+	<div class = 'row'>
+	<br>
+    <br>
+    <br>
+    <button type="button" class="btnk center-block" style="width:50%;" onclick = 'window.location.href = "http://127.0.0.1:8000/nsa/block" '>Block</button>
+	</div>
+</div>
+</body>    
+
+{% load staticfiles %}
+<script src="{% static 'nsa/js/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'nsa/js/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'nsa/js/highcharts/highcharts.js' %}"></script>
+<script src="{% static 'nsa/js/highcharts/modules/exporting.js' %}"></script>
+
+<script>
+$(document).ready(function() {  
+   var chart = {
+       plotBackgroundColor: null,
+       plotBorderWidth: null,
+       plotShadow: false
+   };
+   var title = {
+      text: 'Sites that are being surfed right now.'   
+   };      
+   var tooltip = {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+   };
+   var plotOptions = {
+      pie: {
+         allowPointSelect: true,
+         cursor: 'pointer',
+         dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f}%',
+            style: {
+               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            }
+         }
+      }
+   };
+   var series= [{
+      type: 'pie',
+      name: 'Site share',
+      data: [
+         ['{{site1}}',   {{site1_data}}],
+         ['{{site2}}',	 {{site2_data}}],
+         {
+            name: '{{site3}}',
+            y: {{site3_data}},
+            sliced: true,
+            selected: true
+         },
+         ['{{site4}}',    {{site4_data}}],
+         ['{{site5}}',     {{site5_data}}],
+         ['{{site6}}',   {{site6_data}}]
+      ]
+   }];     
+   // Radialize the colors
+   Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+      return {
+         radialGradient: { cx: 1.5, cy: 1.3, r: 3.7 },
+         stops: [
+            [0, color],
+            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+         ]
+      };
+   });
+	  
+   var json = {};   
+   json.chart = chart; 
+   json.title = title;     
+   json.tooltip = tooltip;  
+   json.series = series;
+   json.plotOptions = plotOptions;
+   $('#chart_container').highcharts(json);  
+});
+</script>
